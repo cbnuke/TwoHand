@@ -37,9 +37,9 @@
   					<div class="panel-body">
                     	<table class="table table-hover">
                         	<tr>
-                            	<td></td>
+                            	<td><a href="#" class="thumbnail"><img height="100" src=""></a></td>
                                 <td></td>
-                                <td></td>
+                                <td><a href="" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-right"></span></a></td>
                             </tr>
                         </table>
                     	<?php
@@ -57,7 +57,15 @@
             	<div class="col-md-12">
     			<div class="panel panel-info">
   					<div class="panel-heading"><span class="glyphicon glyphicon-briefcase"></span> List of sell item</div>
-  					<div class="panel-body">Panel content</div>
+  					<div class="panel-body">
+                    	<table class="table table-hover">
+                        	<tr>
+                            	<td><a href="#" class="thumbnail"><img height="100" src=""></a></td>
+                                <td></td>
+                                <td><a href="" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-right"></span></a></td>
+                            </tr>
+                        </table>
+                    </div>
            		</div>
         		</div>  
             </div>
