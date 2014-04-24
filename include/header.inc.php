@@ -69,11 +69,11 @@
   		padding-right: 15px;
   		padding-left: 15px;
 	}
-	#map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-    }
+	#map_canvas {  
+		width:100%; 
+		height:400px; 
+		margin:auto;
+	} 
     </style>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

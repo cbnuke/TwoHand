@@ -8,7 +8,16 @@
 	
 	//Change status to sold
 	if(isset($_GET['pid'])&&$_GET['pid']!=NULL){
-		
+		$sql = 'SELECT * FROM `product` WHERE `m_user` = \''.$iuser.'\' AND `p_id` = \''.$_GET['pid'].'\'';
+		$query = mysqli_query($objConnect,$sql);
+		if(mysqli_num_rows($query)==1){
+			$sql = 'UPDATE `product` SET `p_status`=\'1\' WHERE `p_id` = \''.$_GET['pid'].'\'';
+			$query = mysqli_query($objConnect,$sql);
+			if($query)
+				echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Success!</strong> Update product to sold.</div>';
+		}else{
+			header("location:manage.php");
+		}
 	}
 ?>
 	<h3>Management your product</h3>

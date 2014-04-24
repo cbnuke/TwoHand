@@ -10,9 +10,9 @@
 		$iquality = $_POST['iquality'];
 		$iprice = $_POST['iprice'];
 		$iother = $_POST['iother'];
+		$ilat = $_POST['ilat'];
+		$ilong = $_POST['ilong'];
 		$iuser = $_SESSION['user'];
-		$ilat = '';
-		$ilong = '';
 		
 		$name='file_'.date('Y-m-dHis');
 		if(isset($_FILES["pic1"]["tmp_name"])){
@@ -104,6 +104,8 @@
                     <input type="file" id="pic4" name="pic4" class="form-control" />
                 	</div>
                 	</div>
+                    <input type="hidden" name="ilat" id="ilat" />
+                    <input type="hidden" name="ilong" id="ilong" />
         			<div class="clearfix col-md-offset-2">
         			<button class="btn btn-primary col-md-4" style="margin-left:14px;" type="submit" name="submit" value="submit">Submit</button>
                 	<button class="btn btn-danger col-md-4" style="margin-left:14px;" type="reset">Reset</button>
@@ -119,31 +121,53 @@
     				<h3 class="panel-title"><strong>Location</strong></h3>
   				</div>
   				<div class="panel-body">
- 					<div id="map-canvas"></div>
+ 					<div id="map_canvas"></div>
   				</div>
             </div>
 		</div>
         
 	</div>
     
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script>
-var map;
-function initialize() {
-  var mapOptions = {
-    zoom: 8,
-    center: new google.maps.LatLng(-34.397, 150.644)
-  };
-  map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
-}
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+	function myMaps() {
+		var mapsGoo=google.maps;
+		var Position=new mapsGoo.LatLng(14.075866, 100.617064);//ละติจูด,ลองติจูด เริ่มต้น
+		var myOptions = {
+							center:Position,//ตำแหน่งแสดงแผนที่เริ่มต้น
+							zoom:14,//ซูมเริ่มต้น คือ 8
+							mapTypeId: mapsGoo.MapTypeId.ROADMAP //ชนิดของแผนที่
+						};
+		var map = new mapsGoo.Map(document.getElementById("map_canvas"),myOptions);
+		var infowindow = new mapsGoo.InfoWindow();
+		var marker = new mapsGoo.Marker({//เรียกเมธอดMarker(ปักหมุด)และกำหนดออปชั่น
+											position: Position,
+											draggable:true
+										});
+		var Posi=marker.getPosition();//เลือกเมธอดแสดงตำแหน่งของตัวปักหมุด
+		$('#ilat').val(Posi.lat());//ละติจูดของMarker
+		$('#ilong').val(Posi.lng());//ลองติจูดของMarker
+		marker.setMap(map);//แสดงตัวปักหมุดโลด!!
+		//ตรวจจับเหตุการณ์ต่างๆ ที่เกิดใน google maps
+		mapsGoo.event.addListener(marker, 'dragend', function(ev) {//ย้ายหมุด
+		var location =ev.latLng;
+		$('#ilat').val(location.lat());//เอาค่าละติจูดไปแสดงที่ Tag HTML ที่มีแอตทริบิวต์ id ชื่อ mapsLat
+		$('#ilong').val(location.lng());//เอาค่าลองติจูดไปแสดงที่ Tag HTML ที่มีแอตทริบิวต์ id ชื่อ mapsLng
+		});
+		mapsGoo.event.addListener(marker, 'click', function(ev) {//คลิกที่หมุด
+		var location =ev.latLng;
+		$('#ilat').val(location.lat());//เอาค่าละติจูดไปแสดงที่ Tag HTML ที่มีแอตทริบิวต์ id ชื่อ mapsLat
+		$('#ilong').val(location.lng());//เอาค่าลองติจูดไปแสดงที่ Tag HTML ที่มีแอตทริบิวต์ id ชื่อ mapsLng
+		infowindow.setContent('Meeting location');
+		infowindow.open(map, marker);
+		});
+	}
+	$(document).ready(function(){
+		myMaps();
+	});
+	</script>
 
-google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
-    <div class="row">
-    	
-	</div>
 <?php
 	include('include/footer.inc.php');
 ?>
