@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include('include/connection.inc.php');
 	include('include/header.inc.php');
 	showHeader('feedback');
@@ -36,7 +37,7 @@
 	</div>
 	</div>
     
-    <div class="col-md-8">
+    <div class="col-md-9">
     	<div class="panel panel-info">
   		<div class="panel-heading">
     		<h3 class="panel-title"><strong>2. Choose seller</strong></h3>
@@ -57,7 +58,7 @@
 							$sql = 'SELECT * FROM `product` 
 									LEFT JOIN `catalog` ON `catalog`.`c_id` = `product`.`c_id`
 									LEFT JOIN `member` ON `member`.`m_user` = `product`.`m_user`
-									WHERE `product`.`c_id` = '.$_GET['catalog'];
+									WHERE `product`.`c_id` = \''.$_GET['catalog'].'\' GROUP BY `product`.`m_user`';
 							
 						$query = mysqli_query($objConnect,$sql);
 						if(mysqli_num_rows($query)==0)

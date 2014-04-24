@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2014 at 12:52 PM
+-- Generation Time: Apr 24, 2014 at 03:23 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   `f_rate` int(1) NOT NULL,
   PRIMARY KEY (`f_id`),
   KEY `m_user` (`m_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -77,6 +77,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `m_user` varchar(32) NOT NULL,
   `p_name` varchar(100) NOT NULL,
   `c_id` int(2) NOT NULL,
+  `p_price` int(6) NOT NULL,
   `p_quality` int(3) NOT NULL,
   `p_otherinfo` varchar(255) NOT NULL,
   `p_lat` varchar(10) NOT NULL,
@@ -89,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   PRIMARY KEY (`p_id`),
   KEY `m_user` (`m_user`),
   KEY `c_id` (`c_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Constraints for dumped tables

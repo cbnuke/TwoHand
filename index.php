@@ -1,10 +1,12 @@
 <?php
+	session_start();
 	include('include/connection.inc.php');
 	include('include/header.inc.php');
 	showHeader('index');
 ?>
-		<div class="row" style="margin: 30px 0px;">
+		<div class="row" style="margin: 10px 0px;">
         	<div class="col-md-12">
+            	<img src="images/welcome.jpg" class="img-responsive" />
        			<h2>All the things you want, we have! All the things you have, we want!</h2>
         	</div>
         </div>
@@ -14,7 +16,7 @@
         		<a class="btn btn-lg btn-warning" href="search.php" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> I want to Buy.</a>
 </div>
             <div class="col-md-3 col-md-offset-2">
-        	    <a class="btn btn-lg btn-primary" href="" role="button"><span class="glyphicon glyphicon-usd"></span> I want ot Sell.</a>
+        	    <a class="btn btn-lg btn-primary" href="sell.php" role="button"><span class="glyphicon glyphicon-usd"></span> I want ot Sell.</a>
 	        </div>
         </div>
         

@@ -1,18 +1,35 @@
 <?php
+	session_start();
 	include('include/connection.inc.php');
 
-  //Check login
-  if(isset($_POST['user'])&&$_POST['user']!=NULL&&isset($_POST['pass'])&&$_POST['pass']!=NULL){
-    $iuser = $_POST['user'];
-    $ipass = $_POST['pass'];
-    $sql = 'SELECT * FROM `member` WHERE `m_user` = \''.$iuser.'\' AND `m_pass` = \''.$ipass.'\'';
-    $query = mysqli_query($objConnect,$sql);
-    $flag = (mysqli_num_rows($query)==1)?TRUE:FALSE;
-    echo $flag;
-  }
+ 	//Check login
+  	if(isset($_POST['user'])&&$_POST['user']!=NULL&&isset($_POST['pass'])&&$_POST['pass']!=NULL){
+    	$iuser = $_POST['user'];
+    	$ipass = $_POST['pass'];
+    	$sql = 'SELECT * FROM `member` WHERE `m_user` = \''.$iuser.'\' AND `m_pass` = \''.$ipass.'\'';
+    	$query = mysqli_query($objConnect,$sql);
+    	$flag = (mysqli_num_rows($query)==1)?TRUE:FALSE;
+		
+		//Save data to session
+		if($flag){
+			$_SESSION['login'] = TRUE;
+			$_SESSION['user'] = $iuser;
+			header("location:index.php");
+		}else{
+			$_SESSION['login'] = FALSE;
+			$_SESSION['user'] = NULL;
+			$alert_text = '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Login fail!</strong> Username or Password is incorrect.</div>';
+		}
+  	}
 
 	include('include/header.inc.php');
 	showHeader('signin');
+?>
+<?php
+	//Aler login
+	if(isset($alert_text)){
+		echo $alert_text;
+	}
 ?>
     
     <div class="row">

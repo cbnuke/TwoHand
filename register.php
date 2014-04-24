@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include('include/connection.inc.php');
 	include('include/header.inc.php');
 	showHeader('register');
