@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2014 at 03:23 PM
+-- Generation Time: Apr 25, 2014 at 08:43 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -34,6 +34,32 @@ CREATE TABLE IF NOT EXISTS `catalog` (
   PRIMARY KEY (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `catalog`
+--
+
+INSERT INTO `catalog` (`c_id`, `c_name`) VALUES
+(1, 'mobile phone'),
+(2, 'tablet PC'),
+(3, 'musical instrument'),
+(4, 'sport'),
+(5, 'bike'),
+(6, 'mother and child'),
+(7, 'bag'),
+(8, 'clock'),
+(9, 'shoes'),
+(10, 'clothing'),
+(11, 'health and beauty'),
+(12, 'home and garden'),
+(13, 'collection'),
+(14, 'camera'),
+(15, 'lectric appliance'),
+(16, 'games'),
+(17, 'pet'),
+(18, 'proterty'),
+(19, 'used car'),
+(20, 'motorcycle');
+
 -- --------------------------------------------------------
 
 --
@@ -47,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   `f_rate` int(1) NOT NULL,
   PRIMARY KEY (`f_id`),
   KEY `m_user` (`m_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -90,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   PRIMARY KEY (`p_id`),
   KEY `m_user` (`m_user`),
   KEY `c_id` (`c_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Constraints for dumped tables
